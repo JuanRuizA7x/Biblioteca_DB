@@ -29,6 +29,16 @@ CREATE TABLE IF NOT EXISTS libros(
     FOREIGN KEY (autor_id) REFERENCES autores(autor_id) ON DELETE CASCADE
 );
 
+-- Creación de la tabla usuarios
+CREATE TABLE IF NOT EXISTS usuarios(
+    usuario_id INTEGER UNSIGNED PRIMARY KEY  AUTO_INCREMENT,
+    nombre VARCHAR(25) NOT NULL,
+    apellido VARCHAR(25) NOT NULL,
+    username VARCHAR(25) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Inserción de registros en la tabla autores
 INSERT INTO autores(nombre, apellido, genero, fecha_nacimiento, pais_origen)
 VALUES
@@ -56,6 +66,12 @@ VALUES
     (5, 'Orgullo y prejuicio (novela)', 'Orgullo y prejuicio (en inglés, Pride and Prejudice), publicada por primera vez el 28 de enero de 1813 como una obra anónima, es la más famosa de las novelas de Jane Austen y una de las primeras comedias románticas en la historia de la novela. Su primera frase es, además, una de las más famosas en la literatura inglesa: «Es una verdad mundialmente reconocida que un hombre soltero, poseedor de una gran fortuna, necesita una esposa».', 1813),
     (5, 'Emma', 'Emma es una novela cómica escrita por Jane Austen, en inglés, publicada por vez primera en 1815 por el editor John Murray, sobre los peligros de malinterpretar el romance. El personaje principal, Emma Woodhouse, se describe como "hermosa, lista y rica" pero también es bastante mimada. Antes de comenzar la novela, Austen escribió: "Voy a elegir una heroína que, excepto a mí, no gustará mucho".', 1815),
     (5, 'Sense and Sensibility', 'Sense and Sensibility, título original en inglés, también conocida como Sensatez y sentimientos, Juicio y sentimiento, Juicio y sensibilidad o Sentido y sensibilidad, es una novela de la escritora británica Jane Austen publicada en 1811. Fue la primera de las novelas de Austen en ser publicadas, bajo el seudónimo de "A Lady" (una dama). Ha sido adaptada para el cine y la televisión numerosas veces, destacando la versión de Ang Lee en 1995.', 1811);
+
+-- Inserción de registros en la tabla usuarios
+INSERT INTO usuarios(nombre, apellido, username, email)
+VALUES
+    ('Juan', 'Ruíz', 'JuanA7x', 'juan.ruiz.22.03.00@gmail.com'),
+    ('Jhony', 'Ocampo', 'Shonny', 'jhony@gmail.com');
 
 -- Agregación de columna num_paginas y num_ventas
 ALTER TABLE libros ADD ventas INTEGER UNSIGNED NOT NULL DEFAULT 0 AFTER anio_publicacion;
